@@ -1,0 +1,84 @@
+POC Pytest AI Testing
+====================
+
+Project Overview
+----------------
+This project is a proof-of-concept for testing AI-driven application behavior using pytest. It demonstrates how to call a Gemini-based AI client, retrieve context, evaluate responses, and validate quality metrics with automated tests.
+
+The project focuses on evaluating whether generated answers are:
+- relevant to the user question,
+- grounded in the provided context,
+- free from hallucination,
+- and consistent with expected test assertions.
+
+Objectives
+----------
+- Validate AI-generated responses through pytest
+- Test prompt execution with context-aware inputs
+- Measure response quality using custom evaluation logic
+- Explore LLM-as-a-Judge evaluation for response assessment
+- Build a simple, practical AI testing workflow
+
+Project Structure
+-----------------
+- .env/                  : Environment files for local configuration
+- testData/              : Sample test data and prompt payloads
+- tests/                 : Pytest test cases
+  - test_prompt.py       : Main AI response tests
+- utils/
+  - ai_client.py         : Wrapper around the Google GenAI client
+  - rag_client.py        : Returns context and facts for the prompt
+  - evaluator.py         : Rule-based relevance/groundedness/hallucination checks
+  - evaluator_LLM_as_Judge.py : LLM-as-a-judge evaluation helper
+- pytest.ini             : Pytest configuration
+- requirements.txt       : Python dependency list
+
+Key Components
+--------------
+AIClient
+- Connects to Google GenAI using the GOOGLE_API_KEY environment variable.
+- Sends a prompt along with context to generate a response.
+
+RAGClient
+- Simulates retrieval-augmented generation by returning context and supporting facts.
+
+Evaluator
+- Computes relevance, groundedness, and hallucination scores using simple logic.
+
+LLM_as_Judge_Evaluator
+- Uses an AI model to evaluate another model's answer in JSON format.
+
+Setup
+-----
+1. Create a virtual environment (optional but recommended).
+2. Install dependencies:
+   pip install -r requirements.txt
+3. Create a .env file in the project root and add:
+   GOOGLE_API_KEY=your_api_key_here
+4. Ensure VS Code is configured to use .env variables in terminals if needed.
+
+Run Tests
+---------
+From the project root, run:
+
+python -m pytest -v -s
+
+This executes the test suite and prints AI responses for inspection.
+
+Sample Test Coverage
+--------------------
+The project includes tests for:
+- basic prompt generation,
+- relevance scoring,
+- groundedness and hallucination checks,
+- LLM-as-Judge evaluation output structure.
+
+Notes
+-----
+- This is a proof of concept and is designed for learning and experimentation.
+- The retrieval logic is intentionally simple and may be replaced with a real database or vector store.
+- AI API availability and rate limits may affect test reliability.
+
+Project Status
+--------------
+This project serves as a starting point for building robust AI-powered test automation workflows using pytest and model-based evaluation.

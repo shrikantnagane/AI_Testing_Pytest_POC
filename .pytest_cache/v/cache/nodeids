@@ -1,0 +1,6 @@
+[
+  "tests/test_prompt.py::test_LLM_as_Judge_Evaluator",
+  "tests/test_prompt.py::test_groundedness_and_hallucination",
+  "tests/test_prompt.py::test_relevance_score",
+  "tests/test_prompt.py::test_send_prompt"
+]
